@@ -56,6 +56,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-instal
                 --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
                 --without-http_scgi_module \
 	&& make && make install \
+	&& mkdir /var/cache/nginx \
 	&& cd .. \
 	&& rm -rf nginx-${NGINX_VERSION} naxsi libressl-${LIBRESSL_VERSION} \
 	&& apt-get purge -y --auto-remove \
