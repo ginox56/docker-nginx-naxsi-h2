@@ -4,6 +4,7 @@ ENV NGINX_VERSION 1.11.3
 ENV NGINX_KEY 520A9993A1C052F8
 ENV LIBRESSL_VERSION 2.4.2
 ENV LIBRESSL_KEY 1FFAA0B24B708F96
+ENV NAXSI_PULL309_SHA1 d9ec746eec730482fe0fad1b64bb8c7b0e13dcb2
 
 WORKDIR /usr/src
 
@@ -30,6 +31,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-instal
 	&& cd naxsi \
 	&& git fetch origin pull/309/head:build \
 	&& git checkout build \
+	&& [ `git rev-parse HEAD` = "${NAXSI_PULL309_SHA1}" ] \
 	&& cd .. \
 	&& cd nginx-${NGINX_VERSION} \
 	&& ./configure \
